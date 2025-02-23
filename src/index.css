@@ -1,0 +1,30 @@
+/* Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+}
+
+/* General Styles */
+html {
+  scroll-behavior: smooth;
+  font-family: "Roboto Flex", serif;
+  background-color: lightblue;
+  background-image: linear-gradient(rgb(66, 141, 195), lightblue);
+}
+
+body {
+  min-height: 100vh;
+}

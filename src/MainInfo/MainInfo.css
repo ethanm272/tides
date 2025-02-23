@@ -1,0 +1,46 @@
+.main-info {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  color: white;
+  background-color: hsla(0, 0%, 20%, 0.19);
+  border-radius: 1rem;
+  padding: 1.75rem 5vw;
+  width: fit-content;
+  margin: 7vh auto 0 auto;
+}
+
+.main-info .location-name {
+  font-size: 1.5rem;
+}
+
+.main-info .location-tide {
+  display: flex;
+  font-size: 5rem;
+  font-weight: 200;
+  position: relative;
+  align-items: center;
+}
+
+.main-info .location-tide-low {
+  font-size: 0.85rem;
+  font-weight: 200;
+}
+
+.main-info .location-tide-high {
+  font-size: 0.85rem;
+  font-weight: 200;
+}
+
+.centered {
+  display: inline-flex;
+  position: relative;
+}
+
+.offset {
+  position: absolute;
+  right: 100%;
+  transform: translate(0);
+  white-space: nowrap;
+  font-size: 3.5rem;
+}
