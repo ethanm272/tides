@@ -11,6 +11,7 @@ export const getTideInfo = (stationId) => {
         timeOffsetHighTide,
         timeOffesetLowTide,
       } = data;
+      console.log(refStationId);
       return getTideFromRef(
         refStationId,
         heightOffsetHighTide,
@@ -65,28 +66,41 @@ const getTidesFromId = (
   let lowTide = { t: new Date(), h: 10 };
   let tidesGraph = [];
   let tidesCounter = 0;
+  let highTideFound = false;
+  let lowTideFound = false;
   const tidesToCount = 24 * 60;
-  data.predictions.forEach((prediction) => {
-    const predictionTime = new Date(prediction.t);
-    const tidePrediction = Number(prediction.v);
+  const predictions = data.predictions;
+  for (let i = 1; i < predictions.length - 1; i++) {
+    const predictionTime = new Date(predictions[i].t);
+    const tidePrediction = Number(predictions[i].v);
     /** Get the first 24 tide predictions after the current time */
     if (predictionTime > now && tidesCounter < tidesToCount) {
       tidesGraph.push(tidePrediction);
       tidesCounter++;
 
-      /** Find Next High Tide */ // TODO fix so it is next high tide not highest tide
-      if (tidePrediction > highTide.h) {
+      /** Find Next High Tide */
+      if (
+        tidePrediction >= Number(predictions[i - 1].v) &&
+        tidePrediction >= Number(predictions[i + 1].v) &&
+        !highTideFound
+      ) {
         highTide.h = tidePrediction;
         highTide.t = predictionTime;
-      }
+        highTideFound = true;
+      } else if (
 
-      /** Find Next Low Tide */ // TODO fix so it is next low tide not lowest tide
-      else if (tidePrediction < lowTide.h) {
+      /** Find Next Low Tide */
+        tidePrediction <= Number(predictions[i - 1].v) &&
+        tidePrediction <= Number(predictions[i + 1].v) &&
+        !lowTideFound
+      ) {
+        console.log(predictions[i], i);
         lowTide.h = tidePrediction;
         lowTide.t = predictionTime;
+        lowTideFound = true;
       }
     }
-  });
+  }
   /** 
   highTide.h += heightOffsetHighTide;
   highTide.t += 60000 * timeOffsetHighTide;
