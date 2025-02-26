@@ -9,7 +9,7 @@ export const getTideInfo = (stationId) => {
         heightOffsetHighTide,
         heightOffsetLowTide,
         timeOffsetHighTide,
-        timeOffesetLowTide,
+        timeOffsetLowTide,
       } = data;
       console.log(refStationId);
       return getTideFromRef(
@@ -17,7 +17,7 @@ export const getTideInfo = (stationId) => {
         heightOffsetHighTide,
         heightOffsetLowTide,
         timeOffsetHighTide,
-        timeOffesetLowTide
+        timeOffsetLowTide
       );
     })
     .catch((e) => console.error(e));
@@ -28,7 +28,7 @@ const getTideFromRef = (
   heightOffsetHighTide,
   heightOffsetLowTide,
   timeOffsetHighTide,
-  timeOffesetLowTide
+  timeOffsetLowTide
 ) => {
   const now = new Date();
   const tomorrow = new Date();
@@ -44,7 +44,7 @@ const getTideFromRef = (
         now,
         heightOffsetLowTide,
         heightOffsetHighTide,
-        timeOffesetLowTide,
+        timeOffsetLowTide,
         timeOffsetHighTide
       )
     )
@@ -88,30 +88,28 @@ const getTidesFromId = (
         highTide.t = predictionTime;
         highTideFound = true;
       } else if (
-
-      /** Find Next Low Tide */
+        /** Find Next Low Tide */
         tidePrediction <= Number(predictions[i - 1].v) &&
         tidePrediction <= Number(predictions[i + 1].v) &&
         !lowTideFound
       ) {
-        console.log(predictions[i], i);
         lowTide.h = tidePrediction;
         lowTide.t = predictionTime;
         lowTideFound = true;
       }
     }
   }
-  /** 
-  highTide.h += heightOffsetHighTide;
-  highTide.t += 60000 * timeOffsetHighTide;
-  lowTide.h += heightOffsetLowTide;
-  lowTide.t += 60000 * timeOffsetLowTide;
-  */
+
+  // Adjust tide levels
+  highTide.t.setMinutes(highTide.t.getMinutes() + timeOffsetHighTide);
+  highTide.h *= heightOffsetHighTide;
+  lowTide.t.setMinutes(lowTide.t.getMinutes() + timeOffsetLowTide);
+  lowTide.h *= heightOffsetLowTide;
 
   console.log(lowTide);
   console.log(highTide);
 
-  return { l: lowTide, h: highTide };
+  return { l: lowTide, h: highTide, c: tidesGraph[0] };
 };
 
 const getDateFormatted = (date) => {
