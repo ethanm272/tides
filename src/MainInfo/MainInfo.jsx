@@ -18,13 +18,14 @@ export const MainInfo = () => {
       const stationName = await getStationName(currLocation);
       setLocation(toTitleCase(stationName));
       const [nextTideInfo, currentTide] = await getTideInfo(currLocation);
+      console.log(nextTideInfo);
       setTide(Math.abs(currentTide.toFixed(2)));
       if (currentTide > 0) setTideSign("+");
       else {
         setTideSign("-");
       }
       setNextTide(
-        `${nextTideInfo.h.toFixed(
+        `${nextTideInfo.type} of ${nextTideInfo.h.toFixed(
           2
         )} ft. at ${nextTideInfo.t.getHours()}:${nextTideInfo.t.getMinutes()}`
       );

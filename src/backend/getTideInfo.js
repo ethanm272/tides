@@ -122,7 +122,7 @@ function processTides(
   }
 
   // Adjust tide levels
-  if ((nextTide.type = "H")) {
+  if (nextTide.type === "H") {
     nextTide.t.setMinutes(nextTide.t.getMinutes() + timeOffsetHighTide);
     nextTide.h *= heightOffsetHighTide;
   } else {
