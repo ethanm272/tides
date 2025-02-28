@@ -1,67 +1,52 @@
-export const getTideInfo = (stationId) => {
-  fetch(
+export async function getTideInfo(stationId) {
+  const offsetResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/${stationId}/tidepredoffsets.json`
-  )
-    .then((resp) => resp.json())
-    .then((data) => {
-      const {
-        refStationId,
-        heightOffsetHighTide,
-        heightOffsetLowTide,
-        timeOffsetHighTide,
-        timeOffsetLowTide,
-      } = data;
-      console.log(refStationId);
-      return getTideFromRef(
-        refStationId,
-        heightOffsetHighTide,
-        heightOffsetLowTide,
-        timeOffsetHighTide,
-        timeOffsetLowTide
-      );
-    })
-    .catch((e) => console.error(e));
-};
+  );
+  const offsets = await offsetResponse.json();
+  const {
+    refStationId,
+    heightOffsetHighTide,
+    heightOffsetLowTide,
+    timeOffsetHighTide,
+    timeOffsetLowTide,
+  } = offsets;
+  const [today, tomorrow] = getTodayTomorrowDates(
+    refStationId,
+    heightOffsetHighTide,
+    heightOffsetLowTide,
+    timeOffsetHighTide,
+    timeOffsetLowTide
+  );
+  const tidesResponse = await fetch(
+    `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${today}&end_date=${tomorrow}&station=${refStationId}&product=predictions&datum=MLLW&time_zone=lst&units=english&format=json`
+  );
+  const unprocessedTides = await tidesResponse.json();
+  const processedTides = processTides(
+    unprocessedTides,
+    new Date(),
+    heightOffsetLowTide,
+    heightOffsetHighTide,
+    timeOffsetLowTide,
+    timeOffsetHighTide
+  );
+  return processedTides;
+}
 
-const getTideFromRef = (
-  refStationId,
-  heightOffsetHighTide,
-  heightOffsetLowTide,
-  timeOffsetHighTide,
-  timeOffsetLowTide
-) => {
+function getTodayTomorrowDates() {
   const now = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(now.getDate() + 1);
-  let todayTomorrow = [getDateFormatted(now), getDateFormatted(tomorrow)];
-  fetch(
-    `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${todayTomorrow[0]}&end_date=${todayTomorrow[1]}&station=${refStationId}&product=predictions&datum=MLLW&time_zone=lst&units=english&format=json`
-  )
-    .then((resp) => resp.json())
-    .then((data) =>
-      getTidesFromId(
-        data,
-        now,
-        heightOffsetLowTide,
-        heightOffsetHighTide,
-        timeOffsetLowTide,
-        timeOffsetHighTide
-      )
-    )
-    .then((info) => {
-      return info;
-    })
-    .catch((e) => console.error(e));
-};
+  return [getDateFormatted(now), getDateFormatted(tomorrow)];
+}
 
-const getTidesFromId = (
+function processTides(
   data,
   now,
   heightOffsetLowTide,
   heightOffsetHighTide,
   timeOffsetLowTide,
   timeOffsetHighTide
-) => {
+) {
   let highTide = { t: new Date(), h: -10 };
   let lowTide = { t: new Date(), h: 10 };
   let tidesGraph = [];
@@ -106,18 +91,16 @@ const getTidesFromId = (
   lowTide.t.setMinutes(lowTide.t.getMinutes() + timeOffsetLowTide);
   lowTide.h *= heightOffsetLowTide;
 
-  console.log(lowTide);
-  console.log(highTide);
+  return [lowTide, highTide, tidesGraph[0]];
+}
 
-  return { l: lowTide, h: highTide, c: tidesGraph[0] };
-};
-
-const getDateFormatted = (date) => {
+function getDateFormatted(date) {
   const dd = String(date.getDate()).padStart(2, "0");
   const mm = String(date.getMonth() + 1).padStart(2, "0");
   const yyyy = date.getFullYear();
 
   return yyyy + mm + dd;
-};
+}
 
-getTideInfo("TEC3783");
+const info = await getTideInfo("TEC3783");
+console.log(info);
