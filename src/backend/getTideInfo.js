@@ -1,3 +1,25 @@
+export async function getStationName(stationId) {
+  const response = await fetch(
+    `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/${stationId}.json?expand=details&units=english`
+  );
+
+  if (!response.ok) {
+    throw new Error(`Response status ${response.status}`, {
+      cause: response,
+    });
+  }
+
+  const stationDetails = await response.json();
+  return stationDetails.stations[0].name;
+}
+
+export function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+  );
+}
+
 export async function getTideInfo(stationId) {
   const offsetResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/${stationId}/tidepredoffsets.json`
@@ -61,12 +83,10 @@ function processTides(
   timeOffsetLowTide,
   timeOffsetHighTide
 ) {
-  let highTide = { t: new Date(), h: -10 };
-  let lowTide = { t: new Date(), h: 10 };
+  let nextTide = { t: new Date(), h: -10, type: "" };
   let tidesGraph = [];
   let tidesCounter = 0;
-  let highTideFound = false;
-  let lowTideFound = false;
+  let tideFound = false;
   const tidesToCount = 24 * 60;
   const predictions = data.predictions;
   for (let i = 1; i < predictions.length - 1; i++) {
@@ -81,31 +101,36 @@ function processTides(
       if (
         tidePrediction >= Number(predictions[i - 1].v) &&
         tidePrediction >= Number(predictions[i + 1].v) &&
-        !highTideFound
+        !tideFound
       ) {
-        highTide.h = tidePrediction;
-        highTide.t = predictionTime;
-        highTideFound = true;
+        nextTide.h = tidePrediction;
+        nextTide.t = predictionTime;
+        nextTide.type = "H";
+        tideFound = true;
       } else if (
         /** Find Next Low Tide */
         tidePrediction <= Number(predictions[i - 1].v) &&
         tidePrediction <= Number(predictions[i + 1].v) &&
-        !lowTideFound
+        !tideFound
       ) {
-        lowTide.h = tidePrediction;
-        lowTide.t = predictionTime;
-        lowTideFound = true;
+        nextTide.h = tidePrediction;
+        nextTide.t = predictionTime;
+        nextTide.type = "L";
+        tideFound = true;
       }
     }
   }
 
   // Adjust tide levels
-  highTide.t.setMinutes(highTide.t.getMinutes() + timeOffsetHighTide);
-  highTide.h *= heightOffsetHighTide;
-  lowTide.t.setMinutes(lowTide.t.getMinutes() + timeOffsetLowTide);
-  lowTide.h *= heightOffsetLowTide;
+  if ((nextTide.type = "H")) {
+    nextTide.t.setMinutes(nextTide.t.getMinutes() + timeOffsetHighTide);
+    nextTide.h *= heightOffsetHighTide;
+  } else {
+    nextTide.t.setMinutes(nextTide.t.getMinutes() + timeOffsetLowTide);
+    nextTide.h *= heightOffsetLowTide;
+  }
 
-  return [lowTide, highTide, tidesGraph[0]];
+  return [nextTide, tidesGraph[0]];
 }
 
 function getDateFormatted(date) {

@@ -1,33 +1,32 @@
 import { useState, useEffect } from "react";
-import { getTideInfo } from "../backend/getTideInfo";
+import {
+  getTideInfo,
+  getStationName,
+  toTitleCase,
+} from "../backend/getTideInfo";
 
 export const MainInfo = () => {
   const [location, setLocation] = useState("--");
   const [tide, setTide] = useState("--");
   const [tideSign, setTideSign] = useState("");
-  const [nextLowTide, setNextLowTide] = useState("--");
-  const [nextHighTide, setNextHighTide] = useState("--");
+  const [nextTide, setNextTide] = useState("--");
 
-  let currLocation = "TEC3783";
+  let currLocation = "8722495";
 
   useEffect(() => {
     return async () => {
-      const [lowTide, highTide, currentTide] = await getTideInfo(currLocation);
-      setLocation(currLocation);
+      const stationName = await getStationName(currLocation);
+      setLocation(toTitleCase(stationName));
+      const [nextTideInfo, currentTide] = await getTideInfo(currLocation);
       setTide(Math.abs(currentTide.toFixed(2)));
       if (currentTide > 0) setTideSign("+");
       else {
         setTideSign("-");
       }
-      setNextLowTide(
-        `${lowTide.h.toFixed(
+      setNextTide(
+        `${nextTideInfo.h.toFixed(
           2
-        )} at ${lowTide.t.getHours()}:${lowTide.t.getMinutes()}`
-      );
-      setNextHighTide(
-        `${highTide.h.toFixed(
-          2
-        )} at ${highTide.t.getHours()}:${highTide.t.getMinutes()}`
+        )} ft. at ${nextTideInfo.t.getHours()}:${nextTideInfo.t.getMinutes()}`
       );
     };
   }, []);
@@ -39,8 +38,7 @@ export const MainInfo = () => {
         <span className="offset">{tideSign}</span>
         <span className="centered">{tide}</span>
       </div>
-      <div className="location-tide-low">Next High Tide: {nextHighTide}</div>
-      <div className="location-tide-high">Next Low Tide: {nextLowTide}</div>
+      <div className="location-tide-low">Next Tide: {nextTide}</div>
     </div>
   );
 };
