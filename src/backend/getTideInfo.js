@@ -2,6 +2,13 @@ export async function getTideInfo(stationId) {
   const offsetResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations/${stationId}/tidepredoffsets.json`
   );
+
+  if (!offsetResponse.ok) {
+    throw new Error(`Response status ${offsetResponse.status}`, {
+      cause: offsetResponse,
+    });
+  }
+
   const offsets = await offsetResponse.json();
   const {
     refStationId,
@@ -20,6 +27,13 @@ export async function getTideInfo(stationId) {
   const tidesResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${today}&end_date=${tomorrow}&station=${refStationId}&product=predictions&datum=MLLW&time_zone=lst&units=english&format=json`
   );
+
+  if (!tidesResponse.ok) {
+    throw new Error(`Response status ${tidesResponse.status}`, {
+      cause: tidesResponse,
+    });
+  }
+
   const unprocessedTides = await tidesResponse.json();
   const processedTides = processTides(
     unprocessedTides,
@@ -101,6 +115,3 @@ function getDateFormatted(date) {
 
   return yyyy + mm + dd;
 }
-
-const info = await getTideInfo("TEC3783");
-console.log(info);
