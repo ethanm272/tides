@@ -11,16 +11,24 @@ export const MainInfo = () => {
   let currLocation = "TEC3783";
 
   useEffect(() => {
-    return () => {
-      const tideInfo = getTideInfo(currLocation);
+    return async () => {
+      const [lowTide, highTide, currentTide] = await getTideInfo(currLocation);
       setLocation(currLocation);
-      setTide(tideInfo.c);
-      if (tideInfo.c > 0) setTideSign("+");
+      setTide(Math.abs(currentTide.toFixed(2)));
+      if (currentTide > 0) setTideSign("+");
       else {
         setTideSign("-");
       }
-      setNextLowTide(`${tideInfo.l.t.getTime()} - ${tideInfo.l.h}`);
-      setNextHighTide(`${tideInfo.h.t.getTime()} - ${tideInfo.h.h}`);
+      setNextLowTide(
+        `${lowTide.h.toFixed(
+          2
+        )} at ${lowTide.t.getHours()}:${lowTide.t.getMinutes()}`
+      );
+      setNextHighTide(
+        `${highTide.h.toFixed(
+          2
+        )} at ${highTide.t.getHours()}:${highTide.t.getMinutes()}`
+      );
     };
   }, []);
 
