@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { MainInfoSection } from "../MainInfoSection/MainInfoSection";
 import { TideChart } from "../TideChart/TideChart";
+import { DayTideTableCard } from "../WeekTideTable/DayTideTableCard/DayTideTableCard";
+import { WeekTideTable } from "../WeekTideTable/WeekTideTable";
 import {
   getTideInfo,
   getStationName,
@@ -55,6 +57,7 @@ export const TideDependents = () => {
         nextTideExtreme={nextTideExtreme}
       />
       <TideChart tideExtremes={tideExtremes} />
+      <WeekTideTable tideExtremes={tideExtremes} />
     </>
   );
 };

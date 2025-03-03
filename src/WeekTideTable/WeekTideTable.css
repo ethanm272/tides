@@ -1,0 +1,23 @@
+.tide-table {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: hsla(0, 0%, 20%, 0.19);
+  border-radius: 1rem;
+  margin: 2rem auto 0 auto;
+  padding: 0 4rem 1.5rem 4rem;
+  width: fit-content;
+}
+
+.week-tide-table {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+.tide-table-title {
+  color: whitesmoke;
+  font-weight: 300;
+  margin-top: 1rem;
+}

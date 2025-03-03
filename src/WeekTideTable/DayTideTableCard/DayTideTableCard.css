@@ -1,0 +1,26 @@
+.hr {
+  max-width: 3rem;
+  border-color: #4e4d4d4c;
+  border-radius: 0.2rem;
+}
+
+.tide-table-card-date {
+  color: whitesmoke;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+}
+
+.tide-table-card-tide {
+  color: whitesmoke;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+.tide-table-card {
+  background-color: hsla(0, 0%, 20%, 0.19);
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}

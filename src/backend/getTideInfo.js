@@ -39,7 +39,7 @@ export async function getTideInfo(stationId) {
     timeOffsetHighTide,
     timeOffsetLowTide,
   } = offsets;
-  const [today, nextDay] = getRangeDates();
+  const [today, nextDay] = getWeekRange();
   const tidesResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${today}&end_date=${nextDay}&station=${refStationId}&product=predictions&datum=MLLW&time_zone=lst&units=english&format=json`
   );
@@ -62,10 +62,10 @@ export async function getTideInfo(stationId) {
   return processedTides;
 }
 
-function getRangeDates() {
+function getWeekRange() {
   const now = new Date();
   const tomorrow = new Date();
-  tomorrow.setDate(now.getDate() + 1);
+  tomorrow.setDate(now.getDate() + 6);
   return [getDateFormatted(now), getDateFormatted(tomorrow)];
 }
 
@@ -135,7 +135,6 @@ function processTides(
   let indicesToRemove = [];
   for (let i = 0; i < tideExtremes.length - 1; i++) {
     const diff = (tideExtremes[i + 1].t - tideExtremes[i].t) / 60000;
-    console.log(diff);
     if (diff < 7) {
       indicesToRemove.push(i);
     }
