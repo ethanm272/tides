@@ -57,7 +57,10 @@ export const options = {
 };
 
 export function TideChart({ tideExtremes }) {
-  const tideData = tideExtremes.map((tide) => ({ x: tide.t, y: tide.h }));
+  const currentDay = tideExtremes[0].t.getDate();
+  const tideData = tideExtremes
+    .filter((tide) => tide.t.getDate() === currentDay)
+    .map((tide) => ({ x: tide.t, y: tide.h }));
   const data = {
     datasets: [
       {
