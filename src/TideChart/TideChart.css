@@ -1,0 +1,7 @@
+.tide-chart {
+  background-color: hsla(0, 0%, 20%, 0.19);
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 85vw;
+  margin: 1.25rem 15vw 0 15vw;
+}

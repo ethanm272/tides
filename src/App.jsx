@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { MainInfo } from "./MainInfo/MainInfo";
+import { TideDependents } from "./TideDependents/TideDependents";
 
 function App() {
   return (
     <>
-      <MainInfo />
+      <TideDependents />
     </>
   );
 }
