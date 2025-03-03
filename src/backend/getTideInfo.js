@@ -65,7 +65,7 @@ export async function getTideInfo(stationId) {
 function getRangeDates() {
   const now = new Date();
   const tomorrow = new Date();
-  tomorrow.setDate(now.getDate() + 0);
+  tomorrow.setDate(now.getDate() + 1);
   return [getDateFormatted(now), getDateFormatted(tomorrow)];
 }
 
@@ -131,7 +131,35 @@ function processTides(
     }
   }
 
-  return [currentTide, nextTideExtreme, tideExtremes];
+  // Remove consecutive tides
+  let indicesToRemove = [];
+  for (let i = 0; i < tideExtremes.length - 1; i++) {
+    const diff = (tideExtremes[i + 1].t - tideExtremes[i].t) / 60000;
+    console.log(diff);
+    if (diff < 7) {
+      indicesToRemove.push(i);
+    }
+  }
+
+  let filteredTideExtremes = [];
+  const indicesToRemoveLength = indicesToRemove.length;
+  if (indicesToRemoveLength === 0) {
+    filteredTideExtremes = tideExtremes;
+  } else {
+    let removeIndex = 0;
+    for (let i = 0; i < tideExtremes.length - 1; i++) {
+      if (
+        removeIndex < indicesToRemoveLength &&
+        i === indicesToRemove[removeIndex]
+      ) {
+        removeIndex += 1;
+      } else {
+        filteredTideExtremes.push(tideExtremes[i]);
+      }
+    }
+  }
+
+  return [currentTide, nextTideExtreme, filteredTideExtremes];
 }
 
 function getDateFormatted(date) {
