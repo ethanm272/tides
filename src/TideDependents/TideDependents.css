@@ -1,0 +1,7 @@
+.tide-dependents {
+  margin-top: 4rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 2rem;
+}

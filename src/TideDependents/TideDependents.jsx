@@ -8,6 +8,7 @@ import {
   getStationName,
   toTitleCase,
 } from "../backend/getTideInfo";
+import "./TideDependents.css";
 
 let currLocation = "8722495";
 
@@ -50,7 +51,7 @@ export const TideDependents = () => {
   }
 
   return (
-    <>
+    <div className="tide-dependents">
       <MainInfoSection
         stationName={stationName}
         currentTide={currentTide}
@@ -58,6 +59,6 @@ export const TideDependents = () => {
       />
       <TideChart tideExtremes={tideExtremes} />
       <WeekTideTable tideExtremes={tideExtremes} />
-    </>
+    </div>
   );
 };

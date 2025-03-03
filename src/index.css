@@ -23,8 +23,11 @@ html {
   font-family: "Roboto Flex", serif;
   background-color: lightblue;
   background-image: linear-gradient(rgb(66, 141, 195), lightblue);
+  min-height: 100%;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
 }
