@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <TideDependents />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

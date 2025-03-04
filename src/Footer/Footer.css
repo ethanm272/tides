@@ -1,0 +1,61 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 100vw;
+  background-color: hsla(0, 0%, 20%, 0.12);
+  height: 5vh;
+}
+
+.btn-right {
+  background-color: hsla(0, 0%, 20%, 0.19);
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  color: whitesmoke;
+  margin-right: 2rem;
+  padding: 5px;
+}
+
+.btn-left {
+  background-color: hsla(0, 0%, 20%, 0.19);
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  color: whitesmoke;
+  margin-left: 2rem;
+  padding: 5px;
+}
+
+.btn-left:hover,
+.btn-right:hover,
+.btn-left:focus,
+.btn-right:focus {
+  background-color: hsla(0, 0%, 20%, 0.25);
+  transform: scale(1.1);
+}
+
+.btn-left:active,
+.btn-right:active {
+  transform: scale(0.9);
+}
+
+.btn-right img,
+.btn-left img {
+  height: 20px;
+  width: 20px;
+}
+
+.page-indicator {
+  color: whitesmoke;
+  background-color: hsla(0, 0%, 20%, 0.19);
+  padding: 5px 15px;
+  border-radius: 0.5rem;
+}
