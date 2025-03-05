@@ -1,0 +1,27 @@
+.results-list {
+  margin-top: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0;
+  border-radius: 0.5rem;
+  background-color: hsla(0, 0%, 100%, 0.455);
+  padding: 0.5rem 0;
+}
+
+.location-choice {
+  padding: 0.5rem auto;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.location-choice:hover {
+  background-color: hsla(0, 0%, 53%, 0.332);
+}
+
+.display-none {
+  display: none;
+}

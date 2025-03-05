@@ -18,6 +18,7 @@ export const DropDownFilter = () => {
     <div className="search-bar">
       <input
         type="search"
+        className="search-input"
         name="seach locations"
         id="search-entry"
         onChange={inputHandler}

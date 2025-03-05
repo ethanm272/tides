@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import "./ResultsList.css";
+
 const locations = new Map([
   ["jupiter", "12345"],
   ["jupiter inlet", "12346"],
@@ -24,13 +26,35 @@ export const ResultsList = ({ text, inputField }) => {
     inputField(text);
   };
 
-  return (
-    <div className="results-list">
-      {filteredData.map((data, index) => (
-        <button onClick={() => setInput(data)} key={index} type="button">
-          {data}
-        </button>
-      ))}
-    </div>
-  );
+  if (filteredData.length === 0) {
+    return (
+      <div className="display-none">
+        {filteredData.map((data, index) => (
+          <button
+            className="location-choice"
+            onClick={() => setInput(data)}
+            key={index}
+            type="button"
+          >
+            {data}
+          </button>
+        ))}
+      </div>
+    );
+  } else {
+    return (
+      <div className="results-list">
+        {filteredData.map((data, index) => (
+          <button
+            className="location-choice"
+            onClick={() => setInput(data)}
+            key={index}
+            type="button"
+          >
+            {data}
+          </button>
+        ))}
+      </div>
+    );
+  }
 };
