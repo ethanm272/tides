@@ -1,0 +1,11 @@
+.location-pop-up {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  margin-bottom: 50px;
+  background-color: hsla(0, 0%, 87%, 0.19);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  width: fit-content;
+}

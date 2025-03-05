@@ -1,0 +1,30 @@
+.no-locations-main {
+  height: 100vh;
+  background-color: hsla(0, 0%, 20%, 0.4);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-locations-notification {
+  color: rgb(228, 226, 226);
+  font-weight: 100;
+  font-size: 1rem;
+  background-color: hsla(0, 0%, 87%, 0.19);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin: 0 auto;
+  width: 75%;
+  text-align: center;
+  line-height: 1.5rem;
+  margin-bottom: 40vh;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.footer {
+  background-color: hsla(0, 0%, 87%, 0.19);
+}
