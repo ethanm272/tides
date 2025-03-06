@@ -4,4 +4,9 @@
   flex-flow: column nowrap;
   align-items: center;
   gap: 2rem;
+  max-width: 90vw;
+  background-color: rgba(128, 128, 128, 0.3);
+  border-radius: 3rem;
+  padding: 2rem 0;
+  margin: 2rem 5vw;
 }
