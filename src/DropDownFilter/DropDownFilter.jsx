@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ResultsList } from "./ResultsList/ResultsList";
+import { SubmitAddLocation } from "./SubmitAddLocation/SubmitAddLocation";
 import "./DropDownFilter.css";
 
 export const DropDownFilter = () => {
@@ -24,6 +25,7 @@ export const DropDownFilter = () => {
         onChange={inputHandler}
       />
       <ResultsList text={text} inputField={(text) => setInputField(text)} />
+      <SubmitAddLocation />
     </div>
   );
 };

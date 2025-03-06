@@ -1,11 +1,12 @@
 .results-list {
-  margin-top: 5px;
+  margin-top: 0px;
   display: flex;
   flex-flow: column nowrap;
   gap: 0;
   border-radius: 0.5rem;
   background-color: hsla(0, 0%, 100%, 0.455);
   padding: 0.5rem 0;
+  width: 100%;
 }
 
 .location-choice {
