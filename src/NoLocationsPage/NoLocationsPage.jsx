@@ -1,7 +1,7 @@
 import "./NoLocationsPage.css";
 import { Footer } from "../Footer/Footer";
 
-export const NoLocationsPage = () => {
+export const NoLocationsPage = ({ addStation }) => {
   return (
     <>
       <div className="no-locations-main">
@@ -10,7 +10,7 @@ export const NoLocationsPage = () => {
           <span className="no-wrap">Add locations using the 'plus'.</span>
         </div>
       </div>
-      <Footer />
+      <Footer addStation={addStation} />
     </>
   );
 };

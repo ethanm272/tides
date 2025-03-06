@@ -10,9 +10,7 @@ import {
 } from "../backend/getTideInfo";
 import "./TideDependents.css";
 
-let currLocation = "8722495";
-
-export const TideDependents = () => {
+export const TideDependents = ({ id }) => {
   const [stationName, setStationName] = useState("--");
   const [currentTide, setCurrentTide] = useState("--");
   const [nextTideExtreme, setNextTideExtreme] = useState("");
@@ -23,11 +21,11 @@ export const TideDependents = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const name = await getStationName(currLocation);
+        const name = await getStationName(id);
         setStationName(toTitleCase(name));
 
         const [currentTideData, nextTide, tideExtremeData] = await getTideInfo(
-          currLocation
+          id
         );
         setCurrentTide(currentTideData);
         setNextTideExtreme(nextTide);

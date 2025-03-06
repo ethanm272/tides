@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./SubmitAddLocation.css";
 
-export const SubmitAddLocation = () => {
+export const SubmitAddLocation = ({ addStation }) => {
   const locations = new Map([
     ["jupiter", "12345"],
-    ["jupiter inlet", "12346"],
+    ["jupiter inlet", "8722495"],
     ["palm beach", "12347"],
     ["miami", "12348"],
     ["fort lauderdale", "12349"],
@@ -19,7 +19,7 @@ export const SubmitAddLocation = () => {
     const stationId = locations.get(submition);
     if (stationId) {
       setSubmitError(false);
-      console.log("yay");
+      addStation(stationId);
     } else {
       setSubmitError(true);
     }

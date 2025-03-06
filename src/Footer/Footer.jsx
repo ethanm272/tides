@@ -2,11 +2,11 @@ import "./Footer.css";
 import { useState } from "react";
 import { LocationPopUpMenu } from "./LocationPopUpMenu/LocationPopUpMenu";
 
-export const Footer = () => {
+export const Footer = ({ addStation }) => {
   const [locationPopUp, setLocationPopUp] = useState(false);
   return (
     <>
-      {locationPopUp && LocationPopUpMenu()}
+      {locationPopUp && LocationPopUpMenu(addStation)}
       <div className="footer">
         <button type="button" className="btn-left">
           <img

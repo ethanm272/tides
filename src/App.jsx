@@ -23,18 +23,24 @@ function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [stationIds]);
+
+  const addStationId = (id) => {
+    setStationIds(stationIds.concat([id]));
+    console.log(localStorage.getItem(localStorageName));
+    localStorage.setItem(localStorageName, id);
+  };
 
   if (hasLocations) {
     return (
       <>
-        <TideDependents />
+        <TideDependents id={stationIds} />
         <Footer />
       </>
     );
   }
 
-  return <NoLocationsPage />;
+  return <NoLocationsPage addStation={addStationId} />;
 }
 
 export default App;
