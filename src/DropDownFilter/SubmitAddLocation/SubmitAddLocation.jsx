@@ -5,7 +5,7 @@ export const SubmitAddLocation = ({ addStation }) => {
   const locations = new Map([
     ["jupiter", "12345"],
     ["jupiter inlet", "8722495"],
-    ["palm beach", "12347"],
+    ["palm beach", "8722621"],
     ["miami", "12348"],
     ["fort lauderdale", "12349"],
   ]);

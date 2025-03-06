@@ -9,3 +9,8 @@ export const formatTimeHH_MM = (time) => {
 
   return hours + ":" + minutes + ampm;
 };
+
+export const splitStringBySpaces = (s) => {
+  if (!s) return [];
+  return s.trim().split(" ");
+};
