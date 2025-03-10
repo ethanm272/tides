@@ -6,7 +6,7 @@ export const Footer = ({ addStation }) => {
   const [locationPopUp, setLocationPopUp] = useState(false);
   return (
     <>
-      {locationPopUp && LocationPopUpMenu(addStation)}
+      {locationPopUp && LocationPopUpMenu(addStation, setLocationPopUp)}
       <div className="footer">
         <button type="button" className="btn-left">
           <img

@@ -7,7 +7,7 @@ const stationDataArr = data.stations.map((obj) => {
 });
 const locations = new Map(stationDataArr);
 
-export const SubmitAddLocation = ({ addStation }) => {
+export const SubmitAddLocation = ({ addStation, setLocationPopUp }) => {
   const searchBar = document.getElementById("search-entry");
 
   const [submitError, setSubmitError] = useState(false);
@@ -18,6 +18,7 @@ export const SubmitAddLocation = ({ addStation }) => {
     if (stationId) {
       setSubmitError(false);
       addStation(stationId);
+      setLocationPopUp(false);
     } else {
       setSubmitError(true);
     }

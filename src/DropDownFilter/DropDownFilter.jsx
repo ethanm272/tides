@@ -3,7 +3,7 @@ import { ResultsList } from "./ResultsList/ResultsList";
 import { SubmitAddLocation } from "./SubmitAddLocation/SubmitAddLocation";
 import "./DropDownFilter.css";
 
-export const DropDownFilter = ({ addStation }) => {
+export const DropDownFilter = ({ addStation, setLocationPopUp }) => {
   const [text, setText] = useState("");
   const inputField = document.getElementById("search-entry");
 
@@ -25,7 +25,10 @@ export const DropDownFilter = ({ addStation }) => {
         onChange={inputHandler}
       />
       <ResultsList text={text} inputField={(text) => setInputField(text)} />
-      <SubmitAddLocation addStation={addStation} />
+      <SubmitAddLocation
+        addStation={addStation}
+        setLocationPopUp={setLocationPopUp}
+      />
     </div>
   );
 };
