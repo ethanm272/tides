@@ -45,7 +45,8 @@ export const TideDependents = ({ id }) => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    console.log(`Error: ${error.message}`);
+    return <></>;
   }
 
   return (
