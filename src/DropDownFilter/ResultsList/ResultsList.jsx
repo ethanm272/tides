@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "./ResultsList.css";
+import data from "../../data/data.json";
 
-const locations = new Map([
-  ["jupiter", "12345"],
-  ["jupiter inlet", "12346"],
-  ["palm beach", "12347"],
-  ["miami", "12348"],
-  ["fort lauderdale", "12349"],
-]);
+const stationDataArr = data.stations.map((obj) => {
+  return [obj.name, obj.id];
+});
+const locations = new Map(stationDataArr);
+
+const MAX_RESULTS_TO_DISPLAY = 5;
 
 export const ResultsList = ({ text, inputField }) => {
   const [filteredData, setFilteredData] = useState([]);

@@ -1,15 +1,13 @@
 import { useState } from "react";
 import "./SubmitAddLocation.css";
+import data from "../../data/data.json";
+
+const stationDataArr = data.stations.map((obj) => {
+  return [obj.name, obj.id];
+});
+const locations = new Map(stationDataArr);
 
 export const SubmitAddLocation = ({ addStation }) => {
-  const locations = new Map([
-    ["jupiter", "12345"],
-    ["jupiter inlet", "8722495"],
-    ["palm beach", "8722621"],
-    ["miami", "12348"],
-    ["fort lauderdale", "12349"],
-  ]);
-
   const searchBar = document.getElementById("search-entry");
 
   const [submitError, setSubmitError] = useState(false);
