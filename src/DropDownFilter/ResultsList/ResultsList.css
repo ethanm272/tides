@@ -7,16 +7,18 @@
   background-color: hsla(0, 0%, 100%, 0.455);
   padding: 0.5rem 0;
   width: 100%;
+  max-height: 6.7rem;
+  overflow: auto;
 }
 
 .location-choice {
-  padding: 0.5rem auto;
+  padding: 0.5rem;
   width: 100%;
   text-align: left;
   border: none;
   background-color: transparent;
-  padding-left: 0.5rem;
   border-radius: 0.25rem;
+  height: 1rem;
 }
 
 .location-choice:hover {
