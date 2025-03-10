@@ -1,0 +1,26 @@
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: hsla(0, 0%, 20%, 0.19);
+  padding: 0.25rem;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  background-color: hsla(0, 0%, 20%, 0.25);
+  transform: scale(1.1);
+}
+
+.delete-btn:active {
+  transform: scale(0.9);
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+}

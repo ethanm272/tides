@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MainInfoSection } from "../MainInfoSection/MainInfoSection";
 import { TideChart } from "../TideChart/TideChart";
-import { DayTideTableCard } from "../WeekTideTable/DayTideTableCard/DayTideTableCard";
+import { DropLocation } from "../DropLocation/DropLocation";
 import { WeekTideTable } from "../WeekTideTable/WeekTideTable";
 import {
   getTideInfo,
@@ -52,6 +52,12 @@ export const TideDependents = ({ id }) => {
 
   return (
     <div className="tide-dependents">
+      <DropLocation
+        id={id}
+        deleteLocation={() => {
+          return;
+        }}
+      />
       <MainInfoSection
         stationName={stationName}
         currentTide={currentTide}
