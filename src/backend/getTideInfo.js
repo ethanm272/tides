@@ -32,7 +32,7 @@ export async function getTideInfo(stationId) {
   }
 
   const offsets = await offsetResponse.json();
-  const {
+  let {
     refStationId,
     heightOffsetHighTide,
     heightOffsetLowTide,
@@ -40,6 +40,11 @@ export async function getTideInfo(stationId) {
     timeOffsetLowTide,
   } = offsets;
   const [today, nextDay] = getWeekRange();
+
+  if (refStationId.length === 0) {
+    refStationId = stationId;
+  }
+
   const tidesResponse = await fetch(
     `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${today}&end_date=${nextDay}&station=${refStationId}&product=predictions&datum=MLLW&time_zone=lst&units=english&format=json`
   );
@@ -51,14 +56,23 @@ export async function getTideInfo(stationId) {
   }
 
   const unprocessedTides = await tidesResponse.json();
-  const processedTides = processTides(
-    unprocessedTides,
-    new Date(),
-    heightOffsetLowTide,
-    heightOffsetHighTide,
-    timeOffsetLowTide,
-    timeOffsetHighTide
-  );
+
+  let processedTides = null;
+
+  if (!heightOffsetHighTide) {
+    console.log(unprocessedTides);
+    processedTides = processTides(unprocessedTides, new Date(), 1, 1, 0, 0);
+  } else {
+    processedTides = processTides(
+      unprocessedTides,
+      new Date(),
+      heightOffsetLowTide,
+      heightOffsetHighTide,
+      timeOffsetLowTide,
+      timeOffsetHighTide
+    );
+  }
+
   return processedTides;
 }
 
