@@ -10,7 +10,7 @@ import {
 } from "../backend/getTideInfo";
 import "./TideDependents.css";
 
-export const TideDependents = ({ id }) => {
+export const TideDependents = ({ id, deleteStation }) => {
   const [stationName, setStationName] = useState("--");
   const [currentTide, setCurrentTide] = useState("--");
   const [nextTideExtreme, setNextTideExtreme] = useState("");
@@ -52,12 +52,7 @@ export const TideDependents = ({ id }) => {
 
   return (
     <div className="tide-dependents">
-      <DropLocation
-        id={id}
-        deleteLocation={() => {
-          return;
-        }}
-      />
+      <DropLocation id={id} deleteStation={deleteStation} />
       <MainInfoSection
         stationName={stationName}
         currentTide={currentTide}

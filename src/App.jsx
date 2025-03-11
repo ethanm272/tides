@@ -41,10 +41,25 @@ function App() {
     setHasLocations(true);
   };
 
+  const deleteStationId = (id) => {
+    const newStations = stationIds.filter((stationId) => stationId !== id);
+    // set station ids
+    setStationIds(newStations);
+    // adjust local storage
+    localStorage.setItem(localStorageName, newStations.join(" "));
+    // Update has locations if none left
+    if (stationIds.length === 0) {
+      setHasLocations(false);
+    }
+  };
+
   if (hasLocations) {
     return (
       <>
-        <TideLocationList stationIds={stationIds} />
+        <TideLocationList
+          stationIds={stationIds}
+          deleteStation={deleteStationId}
+        />
         <Footer addStation={addStationId} />
       </>
     );
