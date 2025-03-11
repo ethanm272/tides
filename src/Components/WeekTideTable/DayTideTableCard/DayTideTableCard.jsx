@@ -1,5 +1,5 @@
 import "./DayTideTableCard.css";
-import { formatTimeHH_MM } from "../../UtilityFunctions/StringUtilities";
+import { formatTimeHH_MM } from "../../../UtilityFunctions/StringUtilities";
 
 export const DayTideTableCard = ({ date, tides }) => {
   const options = { month: "numeric", day: "numeric" };

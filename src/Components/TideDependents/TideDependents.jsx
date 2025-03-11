@@ -7,7 +7,7 @@ import {
   getTideInfo,
   getStationName,
   toTitleCase,
-} from "../backend/getTideInfo";
+} from "../../backend/getTideInfo";
 import "./TideDependents.css";
 
 export const TideDependents = ({ id, deleteStation }) => {

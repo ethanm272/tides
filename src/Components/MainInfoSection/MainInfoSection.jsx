@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { toTitleCase } from "../backend/getTideInfo";
+import { toTitleCase } from "../../backend/getTideInfo";
 import "./MainInfoSection.css";
 
 export const MainInfoSection = ({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { TideLocationList } from "./TideLocationList/TideLocationList";
-import { Footer } from "./Footer/Footer";
-import { NoLocationsPage } from "./NoLocationsPage/NoLocationsPage";
+import { TideLocationList } from "./Components/TideLocationList/TideLocationList";
+import { Footer } from "./Components/Footer/Footer";
+import { NoLocationsPage } from "./Components/NoLocationsPage/NoLocationsPage";
 import { splitStringBySpaces } from "./UtilityFunctions/StringUtilities";
 import "./index.css";
 

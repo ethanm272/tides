@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ResultsList.css";
-import data from "../../data/data.json";
+import data from "../../../data/data.json";
 
 const stationDataArr = data.stations.map((obj) => {
   return [obj.name, obj.id];
