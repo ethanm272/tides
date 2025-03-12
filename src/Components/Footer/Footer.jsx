@@ -10,7 +10,7 @@ export const Footer = ({ addStation }) => {
       <div className="footer">
         <button type="button" className="btn-left">
           <img
-            src="src/assets/icons8-list-24.png"
+            src="/Images/icons8-list-24.png"
             alt="List Locations"
             height="24"
             width="24"
@@ -23,7 +23,7 @@ export const Footer = ({ addStation }) => {
           onClick={() => setLocationPopUp(!locationPopUp)}
         >
           <img
-            src="src/assets/icons8-plus-30.png"
+            src="/Images/icons8-plus-30.png"
             alt="Add Location"
             height="30"
             width="30"

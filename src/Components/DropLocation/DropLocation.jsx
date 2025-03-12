@@ -8,7 +8,7 @@ export const DropLocation = ({ id, deleteStation }) => {
       onClick={() => deleteStation(id)}
     >
       <img
-        src="src/assets/icons8-multiply-30.png"
+        src="/Images/icons8-multiply-30.png"
         alt="delete location"
         width="30"
         height="30"

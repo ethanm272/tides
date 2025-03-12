@@ -60,7 +60,6 @@ export async function getTideInfo(stationId) {
   let processedTides = null;
 
   if (!heightOffsetHighTide) {
-    console.log(unprocessedTides);
     processedTides = processTides(unprocessedTides, new Date(), 1, 1, 0, 0);
   } else {
     processedTides = processTides(
