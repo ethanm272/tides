@@ -15,11 +15,11 @@
   padding: 0 0.5rem;
   margin: 0.15rem 0;
   width: 100%;
-  text-align: left;
+  text-align: right;
   border: none;
   background-color: transparent;
   border-radius: 0.25rem;
-  height: 1rem;
+  height: auto;
 }
 
 .location-choice:hover {

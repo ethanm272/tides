@@ -1,9 +1,9 @@
 .search-bar {
-  padding: 1rem;
+  padding: 1rem 2rem 1rem 1rem;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5rem;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .search-input {

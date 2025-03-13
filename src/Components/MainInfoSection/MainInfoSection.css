@@ -1,16 +1,19 @@
 .main-info {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   align-items: center;
+  justify-content: center;
   color: white;
   background-color: hsla(0, 0%, 20%, 0.19);
   border-radius: 1rem;
   padding: 1.75rem 5vw;
   width: fit-content;
+  max-width: 65vw;
 }
 
 .main-info .location-name {
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .main-info .location-tide {
