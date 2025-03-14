@@ -5,7 +5,9 @@ An app to check the tides in your local area, using NOAA tide information from t
 Ethan Mylett
 
 ## Run Instructions
-Hopefully soon I will have this app deployed. For now...
+Check out the site at 'tides-1.vercel.app'!
+
+To run locally...
 
 'npm i' to install node packages
 'npm run build' to start server
