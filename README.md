@@ -5,12 +5,14 @@ An app to check the tides in your local area, using NOAA tide information from t
 Ethan Mylett
 
 ## Run Instructions
-Hopefully soon I will have this app deployed. For now...
+Check out the site at 'tides-1.vercel.app'!  
 
-'npm i' to install node packages
-'npm run build' to start server
-navigate to [localhost:5173](http://localhost:5173/)
-Try out the project!
+To run locally...  
+
+'npm i' to install node packages  
+'npm run build' to start server  
+navigate to [localhost:5173](http://localhost:5173/)  
+Try out the project!  
 
 ## Controls
 To add a new 'station', click the '+' button in the bottom right and type in your location. Select from the list then hit 'add'.
