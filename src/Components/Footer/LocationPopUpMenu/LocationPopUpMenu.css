@@ -7,4 +7,5 @@
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   width: 30vw;
+  min-width: 215px;
 }
